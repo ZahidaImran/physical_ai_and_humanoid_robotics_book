@@ -1,55 +1,67 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+Version change: 0.0.0 → 1.0.0
+List of modified principles: All new principles established.
+Added sections: Preamble, Workflow, Deliverables.
+Removed sections: None.
+Templates requiring updates:
+- .specify/templates/plan-template.md: ✅ updated
+- .specify/templates/spec-template.md: ✅ updated
+- .specify/templates/tasks-template.md: ✅ updated
+- .specify/templates/commands/*.md: ✅ updated
+Follow-up TODOs: None.
+-->
+# Physical AI and Humanoid Robotics: A Docusaurus Book Constitution
+
+## Preamble
+This constitution outlines the guiding principles, governance, workflow, and deliverables for the "Physical AI and Humanoid Robotics" Docusaurus book project. It aims to ensure clarity, technical accuracy, comprehensive coverage, and an engaging presentation for readers exploring this rapidly evolving field. All contributors and maintainers shall adhere to these principles to uphold the quality and integrity of the publication.
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Clarity & Accessibility
+Every section, chapter, and code example MUST be written with clarity and accessibility as primary goals. Complex concepts SHOULD be broken down into understandable components, and technical jargon SHOULD be explained. The content MUST be accessible to readers with varying levels of prior knowledge, from beginners to experienced professionals.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Technical Accuracy
+All technical information, including concepts, theories, algorithms, and code examples, MUST be thoroughly researched and validated for accuracy. References to scientific papers, established research, and authoritative sources ARE REQUIRED. Any speculative content MUST be clearly identified as such.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Comprehensive Coverage
+The book MUST provide comprehensive coverage of key topics within Physical AI and Humanoid Robotics, as defined in the project's specification. Gaps in content SHOULD be identified and addressed proactively to ensure a holistic understanding for the reader.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Modularity & Reusability
+Content SHOULD be structured modularly, allowing for easy navigation and potential reuse in different contexts (e.g., individual articles, presentations). Code examples MUST be self-contained and demonstrably executable, encouraging hands-on learning.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Version Control & Collaboration
+All content MUST be managed under a version control system (Git) with a clear branching strategy. Collaborative efforts MUST follow established review processes to maintain quality and consistency. Changes MUST be atomic and accompanied by descriptive commit messages.
 
-### [PRINCIPLE_6_NAME]
+### VI. Engaging Presentation
+The book's presentation, including writing style, diagrams, and interactive elements (where applicable), MUST be engaging and foster reader interest. Visual aids SHOULD be clear, informative, and enhance understanding of complex topics.
 
+## Workflow
 
-[PRINCIPLE__DESCRIPTION]
+### Content Creation & Review
+1.  **Drafting:** Authors create content following the established principles and Docusaurus markdown guidelines.
+2.  **Self-Review:** Authors conduct an initial review for clarity, accuracy, and adherence to principles.
+3.  **Peer Review:** Content undergoes review by at least one other subject matter expert or editor for technical accuracy, grammatical correctness, and overall quality. Feedback MUST be addressed before advancement.
+4.  **Technical Review:** Specific technical sections and code examples MAY require dedicated review by specialists.
+5.  **Approval:** Content is approved by the lead editor/project owner for publication.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### Publication & Maintenance
+1.  **Staging Deployment:** Approved content is deployed to a staging environment for final review and testing of the Docusaurus build.
+2.  **Production Deployment:** Upon successful staging review, content is deployed to the production Docusaurus site.
+3.  **Continuous Improvement:** Feedback from readers and new developments in the field WILL BE used to continuously update and improve the book.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+## Deliverables
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### Primary Deliverables
+1.  **Docusaurus Book Content:** A complete, technically accurate, and engaging Docusaurus website representing the "Physical AI and Humanoid Robotics" book.
+2.  **Executable Code Examples:** All code examples presented in the book MUST be available, verifiable, and runnable in a separate repository or integrated within the Docusaurus project.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### Supporting Deliverables
+1.  **Project Specification:** A detailed document outlining the scope, target audience, and content outline of the book.
+2.  **Architectural Decision Records (ADRs):** Documentation for significant architectural or content structuring decisions.
+3.  **Prompt History Records (PHRs):** Records of key AI interactions related to content generation, review, or project management.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+This Constitution supersedes all other project-specific practices and documentation. Amendments to this Constitution require a proposal, discussion, and consensus from the core project team. All proposed changes MUST be documented, approved, and a migration plan outlined if the amendment introduces backward incompatible changes. Compliance with these rules WILL BE verified during content reviews and project milestones.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-12-06 | **Last Amended**: 2025-12-06
