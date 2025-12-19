@@ -1,0 +1,70 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+.ENV
+.venv/
+*.env
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.idea/
+.vscode/
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.hypothesis/
+.DS_Store
+Thumbs.db
+
+# Virtual Environment
+.venv
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+*.out
+
+# Testing
+.coverage*
+htmlcov/
+.pytest_cache/
+.nyc_output/
+coverage/
+
+# Environment specific
+.env
+.env.local
+.env.dev
+.env.test
+.env.prod
+
+# Backend specific
+backend/__pycache__/
+backend/*.pyc
+backend/rag_validator/__pycache__/
+backend/tests/__pycache__/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

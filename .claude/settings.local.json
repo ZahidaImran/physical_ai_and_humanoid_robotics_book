@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git fetch --all --prune)",
+      "Bash(.specify/scripts/powershell/create-new-feature.ps1 -Json \"Deploy book URLs, generate embeddings, and store them in a vector database for RAG\n\nTarget audience:\nBackend and AI engineers maintaining the RAG ingestion pipeline\n\nFocus:\n- Extract content from deployed Docusaurus book URLs\n- Generate embeddings using Cohere\n- Store vectors and metadata in Qdrant Cloud\" --number 1 --short-name \"rag-ingestion-pipeline\")",
+      "Bash(.specify/scripts/powershell/setup-plan.ps1 -Json)"
+    ]
+  }
+}

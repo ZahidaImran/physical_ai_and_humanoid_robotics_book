@@ -1,0 +1,194 @@
+# RAG Retrieval Validation API Contract
+
+## Overview
+This document defines the API contract for the RAG retrieval validation system, specifying endpoints for validating RAG pipeline functionality.
+
+## Base URL
+`/api/v1/validation`
+
+## Endpoints
+
+### POST /validate-query
+Validate a single query against the RAG retrieval system
+
+#### Request
+```json
+{
+  "query_text": "What are the key principles of Physical AI?",
+  "top_k": 5,
+  "expected_results": ["chunk-001", "chunk-002"]
+}
+```
+
+#### Response
+```json
+{
+  "result_id": "validation-12345",
+  "query_id": "query-67890",
+  "retrieved_chunks": [
+    {
+      "id": "chunk-001",
+      "content": "Physical AI principles include...",
+      "metadata": {
+        "url": "https://example.com/book/chapter1",
+        "section": "Introduction",
+        "chapter": "Chapter 1",
+        "chunk_id": "chunk-001"
+      },
+      "relevance_score": 0.92
+    }
+  ],
+  "accuracy_score": 0.85,
+  "latency_ms": 142.5,
+  "relevance_scores": [0.92, 0.88, 0.76, 0.65, 0.52],
+  "metadata_validation_passed": true,
+  "embedding_compatibility_passed": true,
+  "total_retrieved": 5,
+  "expected_retrieved_count": 2,
+  "timestamp": "2025-12-19T10:30:00Z"
+}
+```
+
+#### Error Response
+```json
+{
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Error message describing the failure",
+    "details": {
+      "type": "embedding_dimension_mismatch",
+      "expected_dimensions": 1024,
+      "actual_dimensions": 512
+    }
+  }
+}
+```
+
+### POST /validate-batch
+Run batch validation with multiple queries
+
+#### Request
+```json
+{
+  "queries": [
+    {
+      "query_text": "What are the key principles of Physical AI?",
+      "top_k": 5,
+      "expected_results": ["chunk-001", "chunk-002"]
+    },
+    {
+      "query_text": "Explain humanoid robotics fundamentals",
+      "top_k": 3,
+      "expected_results": ["chunk-003", "chunk-004"]
+    }
+  ],
+  "concurrent_requests": 10
+}
+```
+
+#### Response
+```json
+{
+  "batch_id": "batch-123",
+  "total_queries": 2,
+  "completed_queries": 2,
+  "results": [
+    {
+      "result_id": "validation-12345",
+      "query_id": "query-67890",
+      "accuracy_score": 0.85,
+      "latency_ms": 142.5,
+      "metadata_validation_passed": true,
+      "embedding_compatibility_passed": true
+    }
+  ],
+  "summary": {
+    "average_accuracy": 0.82,
+    "average_latency_ms": 138.2,
+    "success_rate": 1.0
+  },
+  "timestamp": "2025-12-19T10:30:00Z"
+}
+```
+
+### GET /compatibility-check
+Check embedding model compatibility
+
+#### Response
+```json
+{
+  "check_id": "compatibility-check-123",
+  "model_version": "embed-multilingual-v2.0",
+  "expected_dimensions": 1024,
+  "actual_dimensions": 1024,
+  "compatibility_status": "compatible",
+  "qdrant_collection_info": {
+    "collection_name": "book_embeddings",
+    "vector_size": 1024,
+    "total_vectors": 1500,
+    "model_version": "embed-multilingual-v2.0"
+  },
+  "timestamp": "2025-12-19T10:30:00Z"
+}
+```
+
+### GET /performance-benchmark
+Run performance benchmark
+
+#### Query Parameters
+- `concurrent_requests`: Number of concurrent requests (default: 10)
+- `duration_seconds`: Duration of benchmark in seconds (default: 60)
+
+#### Response
+```json
+{
+  "benchmark_id": "perf-benchmark-123",
+  "concurrent_requests": 10,
+  "duration_seconds": 60,
+  "total_requests": 250,
+  "successful_requests": 248,
+  "failed_requests": 2,
+  "metrics": {
+    "avg_latency_ms": 145.2,
+    "p95_latency_ms": 280.5,
+    "p99_latency_ms": 420.1,
+    "requests_per_second": 4.1,
+    "error_rate": 0.008
+  },
+  "timestamp": "2025-12-19T10:30:00Z"
+}
+```
+
+## Common Error Codes
+- `VALIDATION_ERROR`: General validation error
+- `EMBEDDING_DIMENSION_MISMATCH`: Vector dimension mismatch
+- `QDRANT_CONNECTION_ERROR`: Unable to connect to Qdrant
+- `COHERE_API_ERROR`: Error with Cohere API
+- `METADATA_VALIDATION_FAILED`: Metadata validation failed
+- `QUERY_TOO_LONG`: Query text exceeds maximum length
+
+## Data Types
+
+### QueryRequest
+- `query_text`: string (required) - The text to search for
+- `top_k`: integer (optional, default: 5) - Number of results to retrieve
+- `expected_results`: array of strings (optional) - Expected result IDs for accuracy calculation
+
+### ValidationResult
+- `result_id`: string - Unique identifier for this validation result
+- `query_id`: string - Reference to the original query
+- `retrieved_chunks`: array of Chunk objects - Chunks retrieved by the search
+- `accuracy_score`: number (0.0-1.0) - Accuracy measurement
+- `latency_ms`: number - Time taken for retrieval in milliseconds
+- `relevance_scores`: array of numbers - Individual relevance scores
+- `metadata_validation_passed`: boolean - Whether metadata validation passed
+- `embedding_compatibility_passed`: boolean - Whether embedding compatibility validation passed
+- `total_retrieved`: integer - Total number of chunks retrieved
+- `expected_retrieved_count`: integer - Number of expected relevant chunks
+- `timestamp`: string (ISO 8601) - When validation was performed
+
+### Chunk
+- `id`: string - Unique identifier for the chunk
+- `content`: string - The text content of the chunk
+- `metadata`: Metadata object - Associated metadata
+- `relevance_score`: number - Relevance score for this chunk
